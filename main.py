@@ -1,59 +1,55 @@
 import random
 
-def is_prime(number:int):
-    """Checks if a number is prime"""
 
-    # Make sure number is positive
-    if not number > 1:
-        return False
+def mod(mod:int, num:int):
+    """ 
+    Returns the mod of a number
+    (the remainder of the number divided by the mod)
+    Modular arithmatics goes in circles, like a clock
+    5 o'clock + 2 = 7 o'clock 
+    5 + 2 = 7 (mod 12)
+    """
+    return num % mod # returns the remainder of the number divided by the mod
+
+
+def one_way_function(Y:int, _mod:int, num:int):
+    """
+    A one way function is a function that is easy to compute, but hard to reverse.
+    This function is one way because it is easy to calculate a number powered (mod x) 
+        but hard to calculate the number that powered (mod x) to get the result.
+        Currently the only known way to reverse this function is to brute force it.
+    """
+    # y^x (mod _mod)
+    # Note: Y must be smaller than the mod
     
-    # Check if number is divisible by any number between 2 and itself
-    for i in range(2, number): 
-        if (number % i) == 0: 
-            return False
+    powered = Y ** num # Y to the power of num
+    return mod(_mod, powered) # powered (mod _mod)
+
+
+
+
+while True:
     
-    # A test for the above function (ignore this)
-    # for x in range(10000):
-    #   if is_prime(x):
-    #       print(f"{x} is prime")
+    ALICE_num = random.randint(0, 100)
+    BOB_num = random.randint(0, 100)
+
+    # One way function vars
+    MOD = random.randint(500, 1000)
+    Y = random.randint(20, MOD) # Y must be smaller than the mod
+
+    ALICE_public_key = one_way_function(Y, MOD, BOB_num)
+    BOB_public_key = one_way_function(Y, MOD, ALICE_num)
+
     
-    return True
+    # Alice sends her public key to Bob
+    # Bob sends his public key to Alice
 
-def generate_prime_number():
-    """ Generates a prime number by generating a random number and checking if it is prime """
-    
-    # This may be innefficient, but it works :D
-    # (It is fast enough for our purposes)
-    while True:
-        num = random.randint(2, 1000)
-        if is_prime(num):
-            return num
-        
-def greatest_common_divisor(a:int, b:int):
-    """ Finds the greatest common divisor of two numbers """
-    while b: # while b is not 0
-        
-        a, b = b, a % b 
-    return a
-    
-# to create a key we must first generate two prime numbers
-p = generate_prime_number()
-q = generate_prime_number()
+    # They can both calculate the same result
+    ALICE_result = one_way_function(ALICE_public_key, MOD, ALICE_num)
+    BOB_result = one_way_function(BOB_public_key, MOD, BOB_num)
 
-# then we multiply them to get n
-n = p * q
-# n is one part of the public key
+    print(f"Alice's number: {ALICE_num} | Bob's number: {BOB_num}")
+    print(f"Alice's public key: {ALICE_public_key} | Bob's public key: {BOB_public_key}")
+    print(f"Alice's result: {ALICE_result} | Bob's result: {BOB_result}")
 
-
-# https://www.thefreedictionary.com/totient
-_totient = "(Mathematics) a quantity of numbers less than, and sharing no common factors with, a given number"
-# '-> a prime number that is coprime to n
-
-_coprime = "when two numbers have no common factors other than 1."
-# '-> https://www.mathsisfun.com/definitions/coprime.html
-# two numbers are coprime if their greatest common divisor is 1
-
-# then we need to find the "totient"
-totient = (p - 1) * (q - 1)
-
-print(f"p: {p}, q: {q}, n: {n}, totient: {totient}")
+    print("\n\n")
