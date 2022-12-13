@@ -12,12 +12,14 @@ def is_prime(number:int):
         if (number % i) == 0: 
             return False
     
-    return True
-
     # A test for the above function (ignore this)
     # for x in range(10000):
     #   if is_prime(x):
     #       print(f"{x} is prime")
+    
+    return True
+
+
 
 def generate_prime_number():
     """ Generates a prime number by generating a random number and checking if it is prime """
