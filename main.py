@@ -6,8 +6,8 @@ def mod(mod:int, num:int):
     Returns the mod of a number
     (the remainder of the number divided by the mod)
     Modular arithmatics goes in circles, like a clock
-    5 o'clock + 2 = 7 o'clock 
-    5 + 2 = 7 (mod 12)
+    7 o'clock + 8 = 3  o'clock 
+    7 + 8 = 3 (mod 12)
     """
     return num % mod # returns the remainder of the number divided by the mod
 
