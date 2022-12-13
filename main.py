@@ -28,7 +28,9 @@ def one_way_function(Y:int, _mod:int, num:int):
 
 
 
-while True:
+
+
+while True and __name__ == "__main__":
     
     ALICE_num = random.randint(0, 100)
     BOB_num = random.randint(0, 100)
