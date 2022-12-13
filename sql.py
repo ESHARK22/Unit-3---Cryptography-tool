@@ -17,4 +17,4 @@ def create_server_connection(host_name, user_name, user_password):
     return connection
 
 
-connection = create_server_connection("localhost", "Python-User", "22501asd")
+connection = create_server_connection("0.0.0.0", "Python-User", "22501asd")
