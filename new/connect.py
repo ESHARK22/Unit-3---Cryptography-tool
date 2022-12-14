@@ -1,5 +1,5 @@
 HOST = 'localhost'
-PORT = 5000
+PORT = 5010
 import socket
 def connect(host, port):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -78,8 +78,8 @@ def decrypt(message:str, key:int, _mod:int):
 
 def generate_defaults():
     # The mod and Y can be shared to everyone
-    MOD = rand(10000, 1000000)
-    Y = rand(10000, MOD) # Y must be smaller than the mod
+    MOD = rand(10, 10000)
+    Y = rand(1, MOD) # Y must be smaller than the mod
     return MOD, Y
 
 def generate_public_key(private_key:int, MOD:int, Y:int):
