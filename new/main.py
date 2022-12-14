@@ -78,7 +78,7 @@ def decrypt(message:str, key:int, _mod:int):
 
 def generate_defaults():
     # The mod and Y can be shared to everyone
-    MOD = rand(10, 10000)
+    MOD = rand(100000, 100000000)
     Y = rand(1, MOD) # Y must be smaller than the mod
     return MOD, Y
 
@@ -124,8 +124,8 @@ def main():
     
     """
     
-    ALICE_num = rand(100 , 100000)
-    BOB_num = rand(100 , 100000)
+    ALICE_num = rand(10000 , 100000000)
+    BOB_num = rand(10000 , 100000000)
 
     # One way function vars
     MOD, Y = generate_defaults()

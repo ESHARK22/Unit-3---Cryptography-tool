@@ -66,7 +66,7 @@ while True:
     send_message(message)
     if message == "exit":
         break
-    
+    7
     print("Sent message")
     print("Waiting for response...")
     response = receive_message(return_encrypted=True)
